@@ -1,5 +1,10 @@
 - hosts: localhost
   vars:
     ocp4_workload_stackrox_central_admin_password: stackrox
+  module_defaults:
+    kubernetes.core.k8s_info:
+      validate_certs: no
+    kubernetes.core.k8s:
+      validate_certs: no
   roles:
   - ocp4_workload_stackrox_demo_apps
